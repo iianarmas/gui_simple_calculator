@@ -65,20 +65,39 @@ class CalcLayout(BoxLayout):
         num_list = [i for i in self.screen_text.split()]
 
         if len(num_list) >= 3:
-            num_list_check = [i for i in num_list if i.isdigit()]
+            num_list_check = [i for i in num_list if i.isdigit() or i.isdecimal()]
             if len(num_list_check) == 1:
                 self.new_value = num_list_check[0]
             elif len(num_list_check) == 0:
                 self.new_value = '0'
             else:
                 if num_list[1] == '+':
-                    self.new_value = str(float(num_list[0]) + float(num_list[2]))
+                    temp_value = str(float(num_list[0]) + float(num_list[2]))
+                    if temp_value == '0.0':
+                        self.new_value = '0'
+                    else:
+                        self.new_value = temp_value.strip('0.0')
                 elif num_list[1] == '-':
-                    self.new_value = str(float(num_list[0]) - float(num_list[2]))
+                    temp_value = str(float(num_list[0]) - float(num_list[2]))
+                    if temp_value == '0.0':
+                        self.new_value = '0'
+                    else:
+                        self.new_value = temp_value.strip('0.0')
                 elif num_list[1] == '*':
-                    self.new_value = str(float(num_list[0]) * float(num_list[2]))
+                    temp_value = str(float(num_list[0]) * float(num_list[2]))
+                    if temp_value == '0.0':
+                        self.new_value = '0'
+                    else:
+                        self.new_value = temp_value.strip('0.0')
                 elif num_list[1] == '/':
-                    self.new_value = str(float(num_list[0]) / float(num_list[2]))
+                    if num_list[2] == '0':
+                        self.new_value = "INF"
+                    else:
+                        temp_value = str(float(num_list[0]) / float(num_list[2]))
+                        if temp_value == '0.0':
+                            self.new_value = '0'
+                        else:
+                            self.new_value = temp_value.strip('0.0')
         elif len(num_list) < 3:
             num_list_check = [i for i in num_list if i.isdigit()]
             if len(num_list_check) == 1:
@@ -88,12 +107,13 @@ class CalcLayout(BoxLayout):
 
 
 class CalculatorApp(App):
-    Config.set('graphics', 'resizable', '0')
-    Config.set('graphics', 'width', '275')
-    Config.set('graphics', 'height', '483')
+    '''Config.set('graphics', 'resizable', '0')
+    Config.set('graphics', 'width', '360')
+    Config.set('graphics', 'height', '780')'''
 
     def build(self):
         return CalcLayout()
 
 
-CalculatorApp().run()
+if __name__ == "__main__":
+    CalculatorApp().run()
