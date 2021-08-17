@@ -10,15 +10,7 @@ CalcLayout:
                 size: self.size
                 pos: self.pos
         size_hint: 1, 1
-        padding: ("10dp", "10dp", "5dp", "0dp")
-        Label:
-            text: root.screen_text
-            text_size: self.size
-            halign: "left"
-            valign: "top"
-            font_size: "20dp"
-            font_name: "fonts/Lcd.ttf"
-            color: .095, .095, .095, 1
+        padding: ("15dp", "15dp", "15dp", "15dp")
 
     BoxLayout:
         canvas:
@@ -27,14 +19,32 @@ CalcLayout:
             Rectangle:
                 size: self.size
                 pos: self.pos
-        size_hint: 1, 1
+        size_hint: 1, 2
+        padding: ("10dp", "10dp", "5dp", "0dp")
+        Label:
+            text: root.screen_text
+            text_size: self.size
+            halign: "left"
+            valign: "top"
+            font_size: "30dp"
+            font_name: "fonts/Lcd.ttf"
+            color: .095, .095, .095, .6
+
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: .95, .95, .95, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        size_hint: 1, 2
         padding: ("15dp", "15dp", "15dp", "15dp")
 
         Label:
             text: root.new_value
             text_size: self.size
             halign: "right"
-            font_size: "60dp"
+            font_size: "70dp"
             font_name: "fonts/Lcd.ttf"
             color: .095, .095, .095, 1
     BoxLayout:
